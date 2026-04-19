@@ -7,10 +7,10 @@ export default function Skills() {
 
   const technicalSkills = [
     { name: 'HTML/CSS/JS/Tailwind', icon: <Layout className="w-4 h-4" /> },
-    { name: 'NodeJS/Laravel/Spring boot', icon: <Server className="w-4 h-4" /> },
+    { name: 'NodeJS/Laravel/Spring boot/Sharp.NET', icon: <Server className="w-4 h-4" /> },
     { name: 'MySQL/MongoDB', icon: <Database className="w-4 h-4" /> },
     { name: 'ReactJS/VueJs', icon: <Code2 className="w-4 h-4" /> },
-    { name: 'Git', icon: <Settings className="w-4 h-4" /> },
+    { name: 'Git Lab/ GitHub', icon: <Settings className="w-4 h-4" /> },
   ];
 
   const expertise = [

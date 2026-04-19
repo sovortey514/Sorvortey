@@ -1,6 +1,6 @@
-import { useAppContext } from '../contexts/AppContext';
-import { motion } from 'motion/react';
-import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react';
+import { useAppContext } from "../contexts/AppContext";
+import { motion } from "motion/react";
+import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
 
 export default function Hero() {
   const { t, language } = useAppContext();
@@ -28,13 +28,11 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className={`text-4xl md:text-6xl lg:text-7xl font-light tracking-tight text-slate-900 dark:text-white mb-4 ${
-            language === 'km' ? 'font-khmer leading-tight' : ''
+            language === "km" ? "font-khmer leading-tight" : ""
           }`}
         >
           {t.hero.greeting} <br className="hidden md:block" />
-          <span className="font-semibold">
-            SORPORN SOVORTEY
-          </span>
+          <span className="font-semibold">{t.hero.name}</span>{" "}
         </motion.h1>
 
         <motion.h2
@@ -52,11 +50,17 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-wrap items-center gap-4"
         >
-          <a href="#contact" className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-slate-900 dark:bg-white dark:text-slate-900 rounded-full hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors gap-2">
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-slate-900 dark:bg-white dark:text-slate-900 rounded-full hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors gap-2"
+          >
             {t.hero.contactMe}
             <ArrowRight className="w-4 h-4" />
           </a>
-          <a href="#" className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-slate-900 bg-slate-100 dark:bg-slate-800 dark:text-white rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors gap-2">
+          <a
+            href="#"
+            className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-slate-900 bg-slate-100 dark:bg-slate-800 dark:text-white rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors gap-2"
+          >
             <Download className="w-4 h-4" />
             {t.hero.downloadCv}
           </a>
@@ -68,13 +72,26 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="flex items-center gap-4 mt-10"
         >
-          <a href="mailto:sovateysoaphorn@gmail.com" className="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+          <a
+            href="mailto:sovateysoaphorn@gmail.com"
+            className="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+          >
             <Mail className="w-5 h-5" />
           </a>
-          <a href="#" className="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+          <a
+            href="https://www.linkedin.com/in/sovatey-soaphorn-aa3093288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+          >
             <Linkedin className="w-5 h-5" />
           </a>
-          <a href="#" className="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+          <a
+            href="https://github.com/sovortey514"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+          >
             <Github className="w-5 h-5" />
           </a>
         </motion.div>
@@ -87,8 +104,12 @@ export default function Hero() {
         className="flex-1 flex justify-center md:justify-end"
       >
         <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
-          <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-500">
-            <span className="text-slate-400 dark:text-slate-500 font-light">Profile Image</span>
+          <div className="relative w-full h-full rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 flex items-center justify-center transition-all duration-500">
+            <img
+              src="/profile.jpg"
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </motion.div>

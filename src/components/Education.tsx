@@ -7,8 +7,7 @@ export default function Education() {
   const languages = [
     { name: 'Khmer', level: 'Native' },
     { name: 'English', level: 'B1' },
-    { name: 'France', level: 'B1' },
-    { name: 'Chiness', level: 'A2' },
+    { name: 'Chiness', level: 'HSK3' },
   ];
 
   const volunteerWork = [

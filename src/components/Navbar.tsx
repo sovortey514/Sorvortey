@@ -33,6 +33,7 @@ export default function Navbar() {
     { name: t.nav.about, href: '#about' },
     { name: t.nav.skills, href: '#skills' },
     { name: t.nav.experience, href: '#experience' },
+    { name: t.nav.projects, href: '#projects' },
     { name: t.nav.education, href: '#education' },
     { name: t.nav.contact, href: '#contact' },
   ];
@@ -40,7 +41,7 @@ export default function Navbar() {
   const languages: { code: Language; label: string }[] = [
     { code: 'en', label: 'English' },
     { code: 'km', label: 'ខ្មែរ' },
-    { code: 'zh', label: '中文' },
+    { code: 'ch', label: '中文' },
   ];
 
   return (
@@ -53,7 +54,7 @@ export default function Navbar() {
     >
       <div className="max-w-5xl mx-auto px-4 md:px-6 flex items-center justify-between">
         <a href="#" className="text-xl font-semibold tracking-tight text-slate-900 dark:text-white">
-          SORPORN
+          {t.hero.name}
         </a>
 
         {/* Desktop Nav */}

@@ -6,6 +6,13 @@ export default function Experience() {
 
   const experiences = [
     {
+      title: 'API Developer',
+      company: 'ACLEDA Bank PLC',
+      date: 'April 2025-Present',
+      description: 'Banking Service Modernization & Payment Systems',
+      technologies: ['Java', 'MySQL','Soap UI', 'Postman', 'Git Lab','OpenShift','Redis','...']
+    },
+    {
       title: 'Develop a Fixed Asset management system',
       company: 'ONE MORE internship',
       date: 'July-October 2024',

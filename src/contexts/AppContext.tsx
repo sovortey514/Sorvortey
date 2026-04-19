@@ -40,7 +40,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const toggleLanguage = () => {
     setLanguage(prev => {
       if (prev === 'en') return 'km';
-      if (prev === 'km') return 'zh';
+      if (prev === 'km') return 'ch';
       return 'en';
     });
   };

@@ -11,12 +11,6 @@ export default function References() {
       role: 'Deputy Head of Department of Information and Communication Engineering',
       phone: '(+855) 011685685',
       email: 'seakleng@itc.edu.kh'
-    },
-    {
-      name: 'Mr. TY Sophearum',
-      role: 'Software Engineer',
-      phone: '(+855) 098834117',
-      email: 'tysophearum91@gmail.com'
     }
   ];
 

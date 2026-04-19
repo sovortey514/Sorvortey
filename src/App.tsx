@@ -13,6 +13,7 @@ import Education from './components/Education';
 import References from './components/References';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Projects from './components/Projects';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <About />
           <Skills />
           <Experience />
+          <Projects />
           <Education />
           <References />
           <Contact />
