@@ -94,17 +94,6 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
-
-        {/* Arrow scroll */}
-        <div className="flex justify-center mt-12">
-          <a href="#contact">
-            <img
-              src="/assets/arrow.png"
-              alt="Scroll to contact"
-              className="w-8 h-8 animate-bounce cursor-pointer opacity-60 hover:opacity-100"
-            />
-          </a>
-        </div>
       </div>
     </section>
   );
