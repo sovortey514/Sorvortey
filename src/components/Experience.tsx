@@ -23,7 +23,7 @@ export default function Experience() {
       title: 'Develop a POS management system',
       company: 'Camcyber',
       date: 'Mar-Apr 2024',
-      description: 'POS system (Individual Test and intergretion)',
+      description: 'POS system (Individual Test and Integration)',
       technologies: ['Laravel', 'Angular', 'MySQL']
     },
     {

@@ -24,7 +24,7 @@ export default function Projects() {
       demo: "/Ecommerce-demo.pdf",
     },
     {
-      title: "POS System Food returant",
+      title: "POS System Food Restaurant",
       image: "/pos_sys.png",
       github: "https://github.com/sovortey514/Portfolio.git",
       demo: "/VT POS System.pdf",
@@ -42,7 +42,7 @@ export default function Projects() {
           className="mb-12 text-center"
         >
           <h2 className="text-3xl font-light text-slate-900 dark:text-white">
-            {t.projects.title || "Projects"}
+            {t.projects.title}
           </h2>
         </motion.div>
 
