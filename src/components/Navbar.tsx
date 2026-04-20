@@ -6,7 +6,7 @@ import { Language } from '../lib/translations';
 
 const LANGUAGES: { code: Language; label: string }[] = [
   { code: 'en', label: 'English' },
-  { code: 'km', label: 'ខ្មែរ' },
+  { code: 'kh', label: 'ខ្មែរ' },
   { code: 'ch', label: '中文' },
 ];
 
