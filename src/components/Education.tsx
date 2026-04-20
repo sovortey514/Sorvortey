@@ -7,13 +7,13 @@ export default function Education() {
   const languages = [
     { name: 'Khmer', level: 'Native' },
     { name: 'English', level: 'B1' },
-    { name: 'Chiness', level: 'HSK3' },
+    { name: 'Chinese', level: 'HSK3' },
   ];
 
   const volunteerWork = [
     'Spin off (Team Media)',
     'Technon inovation (Team Organizer)',
-    'Culture Fest (Team Media in Youth Aseemply)',
+    'Culture Fest (Team Media in Youth Assembly)',
     'GIC Family (Team Media)'
   ];
 

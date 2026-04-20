@@ -4,6 +4,61 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Language } from '../lib/translations';
 
+const LANGUAGES: { code: Language; label: string }[] = [
+  { code: 'en', label: 'English' },
+  { code: 'km', label: 'ខ្មែរ' },
+  { code: 'ch', label: '中文' },
+];
+
+interface LanguageDropdownProps {
+  isOpen: boolean;
+  onToggle: () => void;
+  language: Language;
+  onSelect: (code: Language) => void;
+}
+
+function LanguageDropdown({ isOpen, onToggle, language, onSelect }: LanguageDropdownProps) {
+  return (
+    <div className="relative lang-dropdown-container">
+      <button
+        onClick={onToggle}
+        className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+        aria-label="Toggle Language"
+      >
+        <Languages className="w-4 h-4" />
+        <span className="uppercase text-xs font-medium">{language}</span>
+        <ChevronDown className={`w-3 h-3 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute right-0 mt-2 w-32 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl shadow-lg overflow-hidden py-1"
+          >
+            {LANGUAGES.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => onSelect(lang.code)}
+                className={`w-full text-left px-4 py-2 text-sm transition-colors ${
+                  language === lang.code
+                    ? 'bg-slate-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 font-medium'
+                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                {lang.label}
+              </button>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
 export default function Navbar() {
   const { theme, toggleTheme, language, setLanguage, t } = useAppContext();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,17 +66,14 @@ export default function Navbar() {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as Element;
-      if (!target.closest('.lang-dropdown-container')) {
+      if (!(event.target as Element).closest('.lang-dropdown-container')) {
         setIsLangMenuOpen(false);
       }
     };
@@ -38,11 +90,10 @@ export default function Navbar() {
     { name: t.nav.contact, href: '#contact' },
   ];
 
-  const languages: { code: Language; label: string }[] = [
-    { code: 'en', label: 'English' },
-    { code: 'km', label: 'ខ្មែរ' },
-    { code: 'ch', label: '中文' },
-  ];
+  const handleLangSelect = (code: Language) => {
+    setLanguage(code);
+    setIsLangMenuOpen(false);
+  };
 
   return (
     <header
@@ -73,46 +124,12 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-4 border-l border-slate-200 dark:border-slate-800 pl-4">
-            <div className="relative lang-dropdown-container">
-              <button
-                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-                aria-label="Toggle Language"
-              >
-                <Languages className="w-4 h-4" />
-                <span className="uppercase text-xs font-medium">{language}</span>
-                <ChevronDown className={`w-3 h-3 transition-transform ${isLangMenuOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              <AnimatePresence>
-                {isLangMenuOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute right-0 mt-2 w-32 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl shadow-lg overflow-hidden py-1"
-                  >
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => {
-                          setLanguage(lang.code);
-                          setIsLangMenuOpen(false);
-                        }}
-                        className={`w-full text-left px-4 py-2 text-sm transition-colors ${
-                          language === lang.code
-                            ? 'bg-slate-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 font-medium'
-                            : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
-                        }`}
-                      >
-                        {lang.label}
-                      </button>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+            <LanguageDropdown
+              isOpen={isLangMenuOpen}
+              onToggle={() => setIsLangMenuOpen(!isLangMenuOpen)}
+              language={language}
+              onSelect={handleLangSelect}
+            />
             <button
               onClick={toggleTheme}
               className="text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
@@ -123,55 +140,25 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* Mobile Toggle */}
+        {/* Mobile Controls */}
         <div className="flex items-center gap-4 md:hidden">
-          <div className="relative lang-dropdown-container">
-            <button
-              onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-              className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
-            >
-              <Languages className="w-4 h-4" />
-              <span className="uppercase text-xs font-medium">{language}</span>
-              <ChevronDown className={`w-3 h-3 transition-transform ${isLangMenuOpen ? 'rotate-180' : ''}`} />
-            </button>
-            <AnimatePresence>
-              {isLangMenuOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute right-0 mt-2 w-32 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl shadow-lg overflow-hidden py-1"
-                >
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => {
-                        setLanguage(lang.code);
-                        setIsLangMenuOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2 text-sm transition-colors ${
-                        language === lang.code
-                          ? 'bg-slate-50 dark:bg-slate-800 text-blue-600 dark:text-blue-400 font-medium'
-                          : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
-                      }`}
-                    >
-                      {lang.label}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          <LanguageDropdown
+            isOpen={isLangMenuOpen}
+            onToggle={() => setIsLangMenuOpen(!isLangMenuOpen)}
+            language={language}
+            onSelect={handleLangSelect}
+          />
           <button
             onClick={toggleTheme}
             className="text-slate-500 dark:text-slate-400"
+            aria-label="Toggle Theme"
           >
             {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
           </button>
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="text-slate-900 dark:text-white"
+            aria-label="Toggle Menu"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
