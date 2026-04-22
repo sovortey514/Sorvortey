@@ -57,13 +57,13 @@ export default function Hero() {
             {t.hero.contactMe}
             <ArrowRight className="w-4 h-4" />
           </a>
-          <a
+          {/* <a
             href="/SORPORN_SOVORTEY_CV.pdf"
             className="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-slate-900 bg-slate-100 dark:bg-slate-800 dark:text-white rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors gap-2"
           >
             <Download className="w-4 h-4" />
             {t.hero.downloadCv}
-          </a>
+          </a> */}
         </motion.div>
 
         <motion.div
